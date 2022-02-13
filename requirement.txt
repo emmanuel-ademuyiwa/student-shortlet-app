@@ -1,0 +1,9 @@
+gunicorn==19.9.0
+django-widget-tweaks
+Django==2.1.3
+django-phone-field==1.8.1
+mysqlclient==1.3.14
+Pillow==7.1.2
+psycopg2==2.8.5
+pytz==2018.7
+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

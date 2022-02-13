@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+{% load static %}
+{% load humanize %}
+{% static "images" as baseUrl %}
+<html lang="en">
+<head>
+<title>Shelttry - {{title}}</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="The Estate Teplate">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+<link href="{% static 'plugins/fontawesome-free-5.0.1/css/fontawesome-all.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/listings_styles.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/listings_responsive.css' %}">
+<link rel="shortcut icon" href="{% static 'images/icons/logo4.png' %}"  />
+</head>
+
+<body>
+
+<div class="super_container">
+
+	<!-- Home -->
+	<div class="home">
+		<!-- Image by: https://unsplash.com/@jbriscoe -->
+		<div class="home_background" style="background-image:url({% static 'images/download2.jpeg' %})"></div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="home_content">
+						<div class="home_title">
+							<h2>{{title}}</h2>
+						</div>
+						<div class="breadcrumbs">
+							<!--span><a href="/">Home</a></span-->
+							<!--span><a href="search"> Search</a></span-->
+							<!--span><a href="list"> Explore</a></span-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Header -->
+
+	<header class="header trans_300">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_container d-flex flex-row align-items-center trans_300">
+
+						<!-- Logo -->
+
+						<div class="logo_container">
+							<a href="/">
+								<div class="logo">
+									<img src="{% static 'images/icons/logo3.png' %}" alt="">
+									<!--span>shelttry</span-->
+								</div>
+							</a>
+						</div>
+
+						<!-- Main Navigation -->
+
+						<nav class="main_nav">
+							<ul class="main_nav_list">
+								<li class="main_nav_item"><a href="/">Home</a></li>
+								<li class="main_nav_item"><a href="explore">Explore</a></li>
+								<li class="main_nav_item"><a href="dashboard">Post Your House</a></li>
+							</ul>
+						</nav>
+
+						<!-- Phone Home -->
+
+						<div class="phone_home text-center">
+							<span>+0080 234 567 84441</span>
+						</div>
+
+						<!-- Hamburger -->
+
+						<div class="hamburger_container menu_mm">
+							<div class="hamburger menu_mm">
+								<i class="fas fa-bars trans_200 menu_mm"></i>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Menu -->
+
+		<div class="menu menu_mm">
+			<ul class="menu_list">
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="/">Home</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="explore">Explore</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="dashboard">Post Your House</a>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+	</header>
+
+	<!-- Listings -->
+
+	<div class="listings">
+		<div class="container">
+			<div class="row">
+
+				<!-- Search Sidebar -->
+
+				<div class="col-lg-4 sidebar_col">
+					<!-- Search Box -->
+
+					<div class="search_box">
+
+						<div class="search_box_content">
+
+							<!-- Search Box Title -->
+							<div class="search_box_title text-center">
+								<div class="search_box_title_inner">
+									<div class="search_box_title_icon d-flex flex-column align-items-center justify-content-center"><img src="{% static 'images/search.png' %}" alt=""></div>
+									<span>search your home</span>
+								</div>
+							</div>
+
+							<!-- Search Form -->
+							<form class="search_form" action="search" method="GET">
+								<div class="search_box_container">
+									<ul class="dropdown_row clearfix">
+										<li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Location</div>
+											<select name="town" id="town" class="dropdown_item_select">
+												<option>Ago</option>
+												<option>Ijebu Igbo</option>
+												<option>Oru</option>
+											</select>
+										</li>
+										<li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Property Type</div>
+											<select name="type" id="type" class="dropdown_item_select">
+												<option>Flat</option>
+												<option>Self-contain</option>
+												<option>Single room</option>
+											</select>
+										</li>
+
+										<li class="dropdown_item dropdown_item_6">
+											<div class="dropdown_item_title">Min Price</div>
+											<select name="min_price" id="min_price" class="dropdown_item_select">
+												<option>10000</option>
+												<option>20000</option>
+                                                <option>30000</option>
+                                                <option>40000</option>
+												<option>50000</option>
+											</select>
+										</li>
+										<li class="dropdown_item dropdown_item_6">
+											<div class="dropdown_item_title">Max Price</div>
+											<select name="max_price" id="max_price" class="dropdown_item_select">
+												<option>40000</option>
+												<option>50000</option>
+                                                <option>60000</option>
+                                                <option>70000</option>
+												<option>80000</option>
+                                                <option>90000</option>
+												<option>100000</option>
+											</select>
+										</li>
+										<li>
+
+										</li>
+										<li class="dropdown_item">
+											<div class="search_button">
+												<input value="search" type="submit" class="search_submit_button">
+											</div>
+										</li>
+
+									</ul>
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<!-- Listings -->
+
+				<div class="col-lg-8 listings_col">
+
+					<!-- Listings Item -->
+					{% for a in post %}
+
+					<div class="listing_item" id="locations">
+						<div class="listing_item_inner d-flex flex-md-row flex-column trans_300">
+							<div class="listing_image_container">
+								<div class="listing_image">
+									<div class="single-room-details-area mb-50">
+										<div class="room-thumbnail-slides mb-50">
+											<div id="" class="carousel slide" data-ride="carousel">
+												<div class="carousel-inner">
+													<a href="{% url 'detail' a.slug %}">
+														
+														<div class="card featured_card trans_300">
+															<img class="card-img-top" src="{{a.image1URL}}" width="500" height="250">
+														</div>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<a href="{% url 'detail' a.slug %}">
+								<div class="featured_card_box d-flex flex-row align-items-center trans_300">
+									<img src="{% static 'images/tag.png' %}">
+									<div class="featured_card_box_content">
+										<div class="featured_card_price_title trans_300">For Rent   &nbsp; | &nbsp; {{a.availability}}</div>
+										<div class="featured_card_price trans_300">₦{{a.price|intcomma}}</div>
+									</div>
+								</div>
+								</a>
+							</div>
+							<div class="listing_content"><br>
+								<span class="room_title"  style="text-transform:uppercase;">{{a.type}} &nbsp; | &nbsp; {{a.town}}</span><br/><br/>
+								<span class="room_title" style="text-transform:capitalize;"></span>
+								<div class="listing_text">{{a.shortDescription}}</div><br/>
+								<ul>
+						<li class="contact_info_item d-flex flex-row">
+							<div><div class="contact_info_icon"><a href="tel:09063435621"><img src="{% static 'images/phone-call.png' %}" alt=""></a></div></div>
+							<div class="contact_info_text"><a href="https://wa.me/+2349063435621">&nbsp;Contact Agent</a></div>
+						</li>
+									<li class="contact_info_item d-flex flex-row">
+
+							<div class="footer_social_item"><a href="https://wa.me/+2349063435621"><i class="fab fa-whatsapp"></i></a></div>
+							<div class="contact_info_text"><a href="https://wa.me/+2349063435621"> Contact Agent </a></div>
+						</li>
+
+
+									</ul>
+							</div>
+						</div>
+					</div>
+								{% endfor %}
+
+			<div class="row">
+				<div class="col clearfix">
+					<div class="listings_nav">
+						<ul>
+							<li class="listings_nav_item active"><a href="#">01.</a></li>
+							<li class="listings_nav_item"><a href="#">02.</a></li>
+							<li class="listings_nav_item"><a href="#">03.</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><br/>
+
+	<!-- Newsletter -->
+
+	<div class="newsletter">
+		<div class="container">
+			<div class="row row-equal-height">
+
+				<div class="col-lg-6">
+					<div class="newsletter_title">
+						<h3>subscribe to our newsletter</h3>
+						<span class="newsletter_subtitle">Get the latest offers</span>
+					</div>
+					<div class="newsletter_form_container">
+						<form action="subscribe" method="post">
+														{% csrf_token %}
+							<div class="newsletter_form_content d-flex flex-row">
+								<input type="text" name="name" class="newsletter_name" id="sname" placeholder="Name" required="required">
+							</div>
+							<div class="newsletter_form_content d-flex flex-row">
+								<input class="newsletter_email" name="email" type="email" placeholder="Your email here" required="required" data-error="Valid email is required."><br>
+								<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_200" value="Submit">subscribe</button>
+							</div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+
+				<!-- Footer About -->
+				<div class="col-lg-3 footer_col">
+					<div class="footer_col_title">
+						<div class="logo_container">
+							<a href="/">
+								<div class="logo">
+									<img src="{% static 'images/icons/logo3.png' %}" alt="">
+									<span>Shelttry</span>
+								</div>
+							</a>
+						</div><br/><br/>
+					</div>
+					<div class="footer_social">
+						<ul class="footer_social_list">
+							<li class="footer_social_item"><a href="https://www.instagram.com/shelttry/"><i class="fab fa-instagram"></i></a></li>
+							<li class="footer_social_item"><a href="https://www.facebook.com/Shelttry-102136874904339/?ref=bookmarks"><i class="fab fa-facebook-f"></i></a></li>
+							<li class="footer_social_item"><a href="https://wa.me/+2349063435621"><i class="fab fa-whatsapp"></i></a></li>
+						</ul>
+					</div>
+					<div clas="footer_about">
+						<p>We have here an open platform, houses chosen to your taste, whereby you can rent an apartment directly from the Agents or Landlords.<br> We recommend you give us your feedback.</p>
+					</div>
+				</div>
+
+				<!-- Footer Useful Links -->
+				<div class="col-lg-3 footer_col">
+					<div class="footer_col_title">quick links</div>
+					<ul class="footer_useful_links">
+						<li class="useful_links_item"><a href="/">Home</a></li>
+						<li class="useful_links_item"><a href="explore">Explore</a></li>
+						<li class="useful_links_item"><a href="#locations">Locations</a></li>
+
+					</ul>
+				</div>
+
+				<!-- Footer Contact Form -->
+				<div class="col-lg-3 footer_col">
+					<div class="footer_col_title">Give us your feedback</div>
+					<div class="footer_contact_form_container">
+						<form id="footer_contact_form" class="footer_contact_form" action="feedback" method="post">
+												{% csrf_token %}
+							<input id="contact_form_name" name="name" class="input_field contact_form_name" type="text" placeholder="Name" required="required" data-error="Name is required.">
+							<input id="contact_form_email" name="email" class="input_field contact_form_email" type="email" placeholder="E-mail" required="required" data-error="Valid email is required.">
+							<textarea id="contact_form_message" class="text_field contact_form_message" name="message" placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
+							<button id="contact_send_btn" type="submit" class="contact_send_btn trans_200" value="Submit">send</button>
+						</form>
+					</div>
+				</div>
+
+				<!-- Footer Contact Info -->
+
+				<div class="col-lg-3 footer_col" id="contact">
+					<div class="footer_col_title">contact info</div>
+					<ul class="contact_info_list">
+						<!--li class="contact_info_item d-flex flex-row">
+							<div><div class="contact_info_icon"><img src="{% static 'images/placeholder.svg' %}" alt=""></div></div>
+							<div class="contact_info_text">4127 Raoul Wallenber 45b-c Gibraltar</div>
+						</li-->
+						<li class="contact_info_item d-flex flex-row">
+							<div><div class="contact_info_icon"><img src="{% static 'images/phone-call.png' %}" alt=""></div></div>
+							<div class="contact_info_text"><a href="tel:09063435621">+234 906 343 5621</a></div>
+						</li>
+						<li class="contact_info_item d-flex flex-row">
+
+							<div class="footer_social_item"><a href="https://wa.me/+2349063435621"><i class="fab fa-whatsapp"></i></a></div>
+							<div class="contact_info_text"><a href="https://wa.me/+2349063435621"> +234 906 343 5621 </a></div>
+						</li>
+						<li class="contact_info_item d-flex flex-row">
+							<div><div class="contact_info_icon"><img src="{% static 'images/message.png' %}" alt=""></div></div>
+							<div class="contact_info_text"><a href="mailto:shelttry@gmail.com?Subject=Hello" target="_top">shelttry@gmail.com</a></div>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+	</footer>
+	<!-- Credits -->
+
+	<div class="credits">
+		<span>
+			<p>&copy; <script>document.write(new Date().getFullYear());</script> Shelttry. All Rights Reserved<br>
+			   <a href="policy">Terms & Conditions</a>&nbsp; and &nbsp;
+			   <a href="privacy">Privacy Policy</a>
+			</p>
+		</span>
+	</div>
+
+</div>
+
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/easing/easing.js' %}"></script>
+<script src="{% static 'js/listings_custom.js' %}"></script>
+	</div></div>
+</body>
+
+</html>

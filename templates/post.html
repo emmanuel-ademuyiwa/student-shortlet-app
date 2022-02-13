@@ -1,0 +1,171 @@
+{% load static %}
+{% static "images" as baseUrl %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'styles/c.css' %}">
+
+
+<title>{{request.user}} -  Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Novus Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href="{% static 'css2/bootstrap.css' %}" rel='stylesheet' type='text/css' />
+<link href="{% static 'css2/style.css' %}" rel='stylesheet' type='text/css' />
+<link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+<script src="{% static 'js2/jquery-1.11.1.min.js' %}"></script>
+<script src="{% static 'js2/modernizr.custom.js' %}"></script>
+<link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href="{% static 'css2/animate.css' %}" rel="stylesheet" type="text/css" media="all">
+<script src="{% static 'js2/wow.min.js' %}"></script>
+<script>new WOW().init();</script>
+<script src="{% static 'js2/metisMenu.min.js' %}"></script>
+<script src="{% static 'js2/custom.js' %}"></script>
+<link href="{% static 'css2/custom.css' %}" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+<link href="{% static 'plugins/fontawesome-free-5.0.1/css/fontawesome-all.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/listings_responsive.css' %}">
+<link rel="shortcut icon" href="{% static 'images/icons/logo4.png' %}"  />
+</head>
+<div class="super_container">
+
+	<div class="home">
+		<div class="home_background" style="background-image:url({% static 'images/download2.jpeg' %})"></div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="home_content">
+						<div class="home_title">
+							<h2>
+								Rent Out Form
+							</h2>
+						</div>
+						<div class="breadcrumbs">
+							<!--span><a href="/">Home</a></span>
+							<span><a href="dashboard">Dashboard</a></span>
+							<span><a href="logout"> Logout</a></span-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Header -->
+
+	<header class="header trans_300">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_container d-flex flex-row align-items-center trans_300">
+
+						<!-- Logo -->
+
+						<div class="logo_container">
+							<a href="/">
+								<div class="logo">
+									<img src="{% static 'images/icons/logo3.png' %}" alt="">
+								</div><br/>
+							</a>
+						</div>
+
+
+						<!-- Main Navigation -->
+
+						<nav class="main_nav">
+							<ul class="main_nav_list">
+								<li class="main_nav_item"><a href="/">home</a></li>
+								<li class="main_nav_item"><a href="dashboard">Dashboard</a></li>
+								<li class="main_nav_item"><a href="logout">logout</a></li>
+								<!--li class="main_nav_item"><a href="register">Register</a></li>
+								<li class="main_nav_item"><a href="accounts/login">Login</a></li-->
+							</ul>
+						</nav>
+
+						<!-- Phone Home -->
+
+						<!--div class="phone_home text-center">
+							<span>+0080 234 567 84441</span>
+						</div-->
+
+						<!-- Hamburger -->
+
+						<div class="hamburger_container menu_mm">
+							<div class="hamburger menu_mm">
+								<i class="fas fa-bars trans_200 menu_mm"></i>
+							</div><br/>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Menu -->
+
+		<div class="menu menu_mm">
+			<ul class="menu_list">
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="/">home</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="dashboard"> dashboard</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="logout">Logout</a>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+	</header>
+		<form action="post" method="post" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+  </form><br/>
+		<div class="footer">
+		   <p>&copy; <script>document.write(new Date().getFullYear());</script> Shelttry Admin Panel. All Rights Reserved</p>
+		</div>
+	</div>
+		<script src="{% static 'js2/classie.js' %}"></script>
+
+	<script src="{% static 'js2/jquery.nicescroll.js' %}"></script>
+	<script src="{% static 'js2/scripts.js' %}"></script>
+
+	<script src="{% static 'js2/bootstrap.js' %}"> </script>
+
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/easing/easing.js' %}"></script>
+<script src="{% static 'js/listings_custom.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,651 @@
+{% load static %}
+{% static "images" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	<title>Shelttry - Home</title>
+	<meta property="og:image" content="https://shelttry.com/logo3.png">
+	<meta property="og:image:type" content="{% static 'images/icons/logo3.png' %}">
+	<meta property="og:image:width" content="1024">
+	<meta property="og:image:height" content="1024">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Shelttry">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+	<link href="{% static 'plugins/fontawesome-free-5.0.1/css/fontawesome-all.css' %}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
+	<link rel="shortcut icon" href="{% static 'images/icons/logo4.png' %}"  />
+
+</head>
+
+<body>
+
+
+<div class="super_container">
+	
+	<!-- Home -->
+	<div class="home">
+		
+		<!-- Home Slider -->
+		<div class="home_slider_container">
+			<div class="owl-carousel owl-theme home_slider">
+
+				<!-- Home Slider Item -->
+				<div class="owl-item home_slider_item">
+
+					<div class="home_slider_background" style="background-image:url({% static 'images/download2.jpeg' %})"></div>
+					<div class="home_slider_content_container text-center">
+						<div class="home_slider_content">
+							<h1 data-animation-in="flipInX" data-animation-out="animate-out fadeOut">find your home</h1>
+						</div>
+					</div>
+				</div>
+
+				<!-- Home Slider Item -->
+				<div class="owl-item home_slider_item">
+					<div class="home_slider_background" style="background-image:url({% static 'images/download2.jpeg' %})"></div>
+					<div class="home_slider_content_container text-center">
+						<div class="home_slider_content">
+							<h1 data-animation-in="flipInX" data-animation-out="animate-out fadeOut">find your home</h1>
+						</div>
+					</div>
+				</div>
+
+				<!-- Home Slider Item -->
+				<div class="owl-item home_slider_item">
+					<div class="home_slider_background" style="background-image:url({% static 'images/download2.jpeg' %})"></div>
+					<div class="home_slider_content_container text-center">
+						<div class="home_slider_content">
+							<h1 data-animation-in="flipInX" data-animation-out="animate-out fadeOut">find your home</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Home Slider Nav -->
+			<div class="home_slider_nav_left home_slider_nav d-flex flex-row align-items-center justify-content-end">
+				<img src="{% static 'images/nav_left.png' %}" alt="">
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- Header -->
+
+	<header class="header trans_300">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_container d-flex flex-row align-items-center trans_300">
+
+						<!-- Logo -->
+
+						<div class="logo_container">
+							<a href="/">
+								<div class="logo">
+									<img src="{% static 'images/icons/logo3.png' %}" alt="">
+								</div>
+							</a>
+						</div>
+						
+						<!-- Main Navigation -->
+
+						{% if profile.purpose == "Student" %}
+
+						<nav class="main_nav">
+							<ul class="main_nav_list">
+								<li class="main_nav_item"><a href="/">Home</a></li>
+								<li class="main_nav_item"><a href="explore">Explore</a></li>
+
+							</ul>
+						</nav>
+						{% else %}
+						<nav class="main_nav">
+							<ul class="main_nav_list">
+								<li class="main_nav_item"><a href="/">Home</a></li>
+								<li class="main_nav_item"><a href="explore">Explore</a></li>
+								<li id="purp" style="visibility: visible;" class="main_nav_item"><a href="dashboard">Post Your House</a></li>
+							</ul>
+						</nav>
+						{% endif %}
+
+						<div class="hamburger_container menu_mm">
+							<div class="hamburger menu_mm">
+								<i class="fas fa-bars trans_200 menu_mm" style="font-weight: bold; color: #fff;"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Menu -->
+
+		{% if profile.purpose == "Student" %}
+
+
+		<div class="menu menu_mm">
+			<ul class="menu_list">
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="/">Home</a>
+							</div>
+						</div>
+					</div>
+				</li>
+
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="explore">Explore</a>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		{% else %}
+
+		<div class="menu menu_mm">
+			<ul class="menu_list">
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="/">Home</a>
+							</div>
+						</div>
+					</div>
+				</li>
+
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="explore">Explore</a>
+							</div>
+						</div>
+					</div>
+				</li>
+
+				<li class="menu_item" id="purp1" >
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="dashboard">Post Your House</a>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		{% endif %}
+
+
+	</header>
+	
+	<!-- Search Box -->
+
+	<div class="search_box">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+
+					<div class="search_box_outer">
+						<div class="search_box_inner">
+
+							<!-- Search Box Title -->
+							<div class="search_box_title text-center">
+								<div class="search_box_title_inner">
+									<div class="search_box_title_icon d-flex flex-column align-items-center justify-content-center"><img src="{% static 'images/search.png' %}" alt=""></div>
+									<span>search your home</span>
+								</div>
+							</div>
+
+							<!-- Search Arrow -->
+							<div class="search_arrow_box">
+								<div class="search_arrow_box_inner">
+									<div class="search_arrow_circle d-flex flex-column align-items-center justify-content-center"><span>Search it here</span></div>
+									<img src="{% static 'images/search_arrow.png' %}" alt="">
+								</div>
+							</div>
+
+							<!-- Search Form -->
+							<form class="search_form" action="search" method="GET" >
+								<div class="search_box_container">
+									<ul class="dropdown_row clearfix">
+										<li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Location</div>
+											<select name="town" id="town" class="dropdown_item_select">
+												<option>Ago</option>
+												<option>Ijebu Igbo</option>
+												<option>Oru</option>
+											</select>
+										</li>
+
+										<li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Property Type</div>
+											<select name="type" id="type" class="dropdown_item_select">
+												<option>Flat</option>
+												<option>Self-contain</option>
+												<option>Single room</option>
+											</select>
+										</li>
+
+										<li class="dropdown_item dropdown_item_6">
+											<div class="dropdown_item_title">Min Price</div>
+											<select name="min_price" id="min_price" class="dropdown_item_select">
+												<option>10000</option>
+												<option>20000</option>
+                                                <option>30000</option>
+                                                <option>40000</option>
+												<option>50000</option>
+											</select>
+										</li>
+										<li class="dropdown_item dropdown_item_6">
+											<div class="dropdown_item_title">Max Price</div>
+											<select name="max_price" id="max_price" class="dropdown_item_select">
+												<option>40000</option>
+												<option>50000</option>
+                                                <option>60000</option>
+                                                <option>70000</option>
+												<option>80000</option>
+                                                <option>90000</option>
+												<option>100000</option>
+											</select>
+										</li>
+										<li>
+
+										</li>
+										<li class="dropdown_item">
+											<div class="search_button">
+												<input value="search" type="submit" class="search_submit_button">
+											</div>
+										</li>
+
+									</ul>
+								</div>
+
+							</form>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>		
+	</div>
+
+	<!-- Featured Properties -->
+
+	<div class="featured" id="locations">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="section_title text-center">
+						<h3>popular locations</h3>
+						<span class="section_subtitle">See our best offers</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row featured_row">
+				<div class="col-lg-4 featured_card_col">
+					<div class="featured_card_container">
+						<div class="card featured_card trans_300">
+							<a href="ago-iwoye"><img class="card-img-top" src="{% static 'images/ago.jpeg' %}" width="500" height="200"></a>
+						</div>
+						<div class="featured_card_box d-flex flex-row align-items-center trans_300">
+							<img src="{% static 'images/tag.png' %}" alt="https://www.flaticon.com/authors/lucy-g">
+							<div class="featured_card_box_content">
+								<div class="featured_card_price_title"></div>
+								<div class="featured_card_price"><a style="color:#FFFFFF;" href="ago-iwoye">Ago Iwoye</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 featured_card_col">
+					<div class="featured_card_container">
+						<div class="card featured_card trans_300">
+							<a href="ijebu-igbo"><img class="card-img-top" src="{% static 'images/ijebuigbo.jpeg' %}" width="500" height="200" ></a>
+						</div>
+
+						<div class="featured_card_box d-flex flex-row align-items-center trans_300">
+							<img src="{% static 'images/tag.png' %}" alt="https://www.flaticon.com/authors/lucy-g">
+							<div class="featured_card_box_content">
+								<div class="featured_card_price_title"></div>
+								<div class="featured_card_price"><a style="color:#FFFFFF;" href="ijebu-igbo">Ijebu Igbo</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 featured_card_col">
+					<div class="featured_card_container">
+						<div class="card featured_card trans_300">
+							<a href="oru"><img class="card-img-top" src="{% static 'images/oru.jpg' %}" width="500" height="200"></a>
+						</div>
+						<div class="featured_card_box d-flex flex-row align-items-center trans_300">
+							<img src="{% static 'images/tag.png' %}"  alt="https://www.flaticon.com/authors/lucy-g">
+							<div class="featured_card_box_content">
+								<div class="featured_card_price_title"></div>
+								<div class="featured_card_price"><a style="color:#FFFFFF;" href="oru">Oru</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Testimonials -->
+	<div class="testimonials"  id="testimonials">
+		<div class="testimonials_background_container prlx_parent">
+			<div class="testimonials_background prlx" style="background-image:url({% static 'images/download2.jpeg' %})"></div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="section_title text-center">
+						<h3>clients testimonials</h3>
+						<span class="section_subtitle">See our best offers</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-10 offset-lg-1">
+					<div class="testimonials_slider_container">
+						<div class="owl-carousel owl-theme testimonials_slider">
+
+												{% for i in test %}
+							<div class="owl-item text-center">
+								<div class="testimonials_text">{{i.message}}</div>
+								<div class="testimonial_user">
+									<div>
+										<div class="testimonial_name">{{i.name}}</div>
+										<div class="testimonial_title">Client</div>
+									</div>
+								</div>
+							</div>
+												{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+	<!-- Workflow -->
+	<div class="workflow">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="section_title text-center">
+						<h3>see how we operate</h3>
+						<span class="section_subtitle">What you need to do</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row workflow_row">
+				<div class="workflow_rocket"><img src="{% static 'images/rocket.png' %}" alt=""></div>
+
+				<!-- Workflow Item -->
+				<div class="col-lg-4 workflow_col">
+					<div class="workflow_item">
+						<div class="workflow_image_container d-flex flex-column align-items-center justify-content-center">
+							<div class="workflow_image_background">
+								<div class="workflow_circle_outer trans_200"></div>
+								<div class="workflow_circle_inner trans_200"></div>
+								<div class="workflow_num text-center trans_200"><span>01.</span></div>
+							</div>
+							<div class="workflow_image">
+								<img src="{% static 'images/workflow_1.png' %}" alt="">
+							</div>
+						</div>
+						<div class="workflow_item_content text-center">
+							<div class="workflow_title">Choose a Location</div>
+							<p class="workflow_text">Get the best suited location from the list of available houses.</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Workflow Item -->
+				<div class="col-lg-4 workflow_col">
+					<div class="workflow_item">
+						<div class="workflow_image_container d-flex flex-column align-items-center justify-content-center">
+							<div class="workflow_image_background">
+								<div class="workflow_circle_outer trans_200"></div>
+								<div class="workflow_circle_inner trans_200"></div>
+								<div class="workflow_num text-center trans_200"><span>02.</span></div>
+							</div>
+							<div class="workflow_image">
+								<img src="{% static 'images/workflow_2.png' %}" alt="">
+							</div>
+						</div>
+						<div class="workflow_item_content text-center">
+							<div class="workflow_title">Find the Perfect Home</div>
+							<p class="workflow_text">With the affordable prices you can get yourself a place of comfort based upon your preferences.</p>
+						</div>
+					</div>
+				</div>
+				<!-- Workflow Item -->
+				<div class="col-lg-4 workflow_col">
+					<div class="workflow_item">
+						<div class="workflow_image_container d-flex flex-column align-items-center justify-content-center">
+							<div class="workflow_image_background">
+								<div class="workflow_circle_outer trans_200"></div>
+								<div class="workflow_circle_inner trans_200"></div>
+								<div class="workflow_num text-center trans_200"><span>03.</span></div>
+							</div>
+							<div class="workflow_image">
+								<img src="{% static 'images/workflow_3.png' %}" alt="">
+							</div>
+						</div>
+						<div class="workflow_item_content text-center">
+							<div class="workflow_title">Move in your new life</div>
+							<p class="workflow_text">Your home is your world why wait when it's in front of you, take it and move in.</p>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- Call to Action -->
+
+	<div class="cities">
+		<div class="cities_background"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="section_title text-center">
+						<h3>Common Locations</h3>
+						<span class="section_subtitle">See our best offers</span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+
+					<!-- Cities Slider -->
+					<div class="cities_slider_container">
+						<div class="owl-carousel owl-theme cities_slider">
+						{% for i in dests %}
+
+							<div class="owl-item city_item">
+								<a href="{% url 'detail' i.slug %}" >
+									<div class="city_image">
+										<img src="{{i.image1.url}}" height="250" alt="">
+									</div>
+									<div class="city_details"><img src="{{i.image1.url}}" alt=""></div>
+									<div class="city_name"><span>{{i.town}}</span></div>
+								</a>
+							</div>
+						{% endfor %}
+						</div>
+						<div class="cities_prev cities_nav d-flex flex-row align-items-center justify-content-center trans_200">
+							<img src="{% static 'images/nav_left.png' %}" alt="">
+						</div>
+						<div class="cities_next cities_nav d-flex flex-row align-items-center justify-content-center trans_200">
+							<img src="{% static 'images/nav_right.png' %}" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="cta_1">
+		<div class="cta_1_background" style="background-image:url(images/cta_1.jpg)"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col">
+
+					<div class="cta_1_content d-flex flex-lg-row flex-column align-items-center justify-content-start">
+						<h3 class="cta_1_text text-lg-left text-center">Are you a Landlord or an Agent and you'll like to upload your house</h3>
+						<div class="cta_1_phone"><a href="{% url 'signup' %}">Sign Up</a></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="newsletter">
+		<div class="container">
+			<div class="row row-equal-height">
+				<div class="col-lg-6">
+					<div class="newsletter_title">
+						<h3>subscribe to our newsletter</h3>
+						<span class="newsletter_subtitle">Get the latest offers</span>
+					</div>
+					<div class="newsletter_form_container">
+						<form action="subscribe" method="post">
+														{% csrf_token %}
+							<div class="newsletter_form_content d-flex flex-row">
+								<input type="text" name="name" class="newsletter_name" id="sname" placeholder="Name" required="required">
+							</div>
+							<div class="newsletter_form_content d-flex flex-row">
+								<input class="newsletter_email" name="email" type="email" placeholder="Your email here" required="required" data-error="Valid email is required."><br>
+								<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_200" value="Submit">subscribe</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Footer -->
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				
+				<!-- Footer About -->
+				<div class="col-lg-3 footer_col">
+					<div class="footer_col_title">
+						<div class="logo_container">
+							<a href="/">
+								<div class="logo">
+									<img src="{% static 'images/icons/logo3.png' %}" alt="">
+									<span>Shelttry</span>
+								</div>
+							</a>
+						</div><br/><br/>
+					</div>
+					<div class="footer_social">
+						<ul class="footer_social_list">
+							<li class="footer_social_item"><a href="https://www.instagram.com/shelttry/"><i class="fab fa-instagram"></i></a></li>
+							<li class="footer_social_item"><a href="https://www.facebook.com/Shelttry-102136874904339/?ref=bookmarks"><i class="fab fa-facebook-f"></i></a></li>
+							<li class="footer_social_item"><a href="https://wa.me/+2349063435621"><i class="fab fa-whatsapp"></i></a></li>
+						</ul>
+					</div>
+					<div class="footer_about">
+						<p>We have here an open platform, houses chosen to your taste, whereby you can rent an apartment directly from the Agents or Landlords. We recommend you give us your feedback.</p>
+					</div>
+				</div>
+				
+				<!-- Footer Useful Links -->
+				<div class="col-lg-3 footer_col">
+					<div class="footer_col_title">quick links</div>
+					<ul class="footer_useful_links">
+						<li class="useful_links_item"><a href="explore">Explore</a></li>
+						<li class="useful_links_item"><a href="#locations">Locations</a></li>
+						<li class="useful_links_item"><a href="#testimonials">Clients Testimonials</a></li>
+					</ul>
+				</div>
+
+				<!-- Footer Contact Form -->
+				<div class="col-lg-3 footer_col">
+					<div class="footer_col_title">Give us your feedback</div>
+					<div class="footer_contact_form_container">
+						<form id="footer_contact_form" class="footer_contact_form" method="post" action="feedback">
+																		{% csrf_token %}
+							<input id="name" name="name" class="input_field contact_form_name" type="text" placeholder="Name" required="required" data-error="Name is required.">
+							<input id="email" name="email" class="input_field contact_form_email" type="email" placeholder="E-mail" required="required" data-error="Valid email is required.">
+							<textarea id="message" class="text_field contact_form_message" name="message" placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
+							<center><button id="contact_send_btn" type="submit" class="contact_send_btn trans_200" value="Submit">send</button></center>
+						</form>
+					</div>
+				</div>
+
+				<!-- Footer Contact Info -->
+				<div class="col-lg-3 footer_col" id="contact">
+					<div class="footer_col_title">contact info</div>
+					<ul class="contact_info_list">
+						<li class="contact_info_item d-flex flex-row">
+							<div><div class="contact_info_icon"><img src="{% static 'images/phone-call.png' %}" alt=""></div></div>
+							<div class="contact_info_text"><a href="tel:09063435621">+234 906 343 5621</a></div>
+						</li>
+						<li class="contact_info_item d-flex flex-row">
+							<div class="footer_social_item"><a href="https://wa.me/+2349063435621"><i class="fab fa-whatsapp"></i></a></div>
+							<div class="contact_info_text"><a href="https://wa.me/+2349063435621"> +234 906 343 5621</a></div>
+						</li>
+						<li class="contact_info_item d-flex flex-row">
+							<div><div class="contact_info_icon"><img src="{% static 'images/message.png' %}" alt=""></div></div>
+							<div class="contact_info_text"><a href="mailto:shelttry@gmail.com?Subject=Hello" target="_top">shelttry@gmail.com</a></div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Credits -->
+	<div class="credits">
+		<span>
+			<p>&copy; <script>document.write(new Date().getFullYear());</script> Shelttry. All Rights Reserved<br>
+			   <a href="{% url 'policy' %}">Terms & Conditions</a>&nbsp; and &nbsp;
+			   <a href="{% url 'privacy' %}">Privacy Policy</a>
+			</p>
+		</span>
+	</div>
+
+</div>
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/TweenMax.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/TimelineMax.min.js' %}"></script>
+<script src="{% static 'plugins/scrollmagic/ScrollMagic.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/animation.gsap.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/ScrollToPlugin.min.js' %}"></script>
+<script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+<script src="{% static 'plugins/scrollTo/jquery.scrollTo.min.js' %}"></script>
+<script src="{% static 'plugins/easing/easing.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+
+</body>
+</html>

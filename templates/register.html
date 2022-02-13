@@ -1,0 +1,88 @@
+{% load static %}
+{% static "images" as baseUrl %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/c.css' %}">
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign Up Form</title>
+        <link rel="stylesheet" href="css/normalize.css">
+        <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+
+      <form action="" method="post" onsubmit="return checkForm(this);">
+        {% csrf_token %}
+
+          <center><a href="/" ><img src="{% static 'images/icons/logo4.png' %}" alt=""></a></center>
+
+        <fieldset>
+
+          <legend>Sign Up</legend>
+			<div>
+        {% if form.errors %}
+			{% for field in form %}
+                {% for error in field.errors %}
+                    <p> {{ error }} </p>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+			</div>
+
+
+          <label for="purpose">What are you registering as:</label>
+          {{form.purpose}}
+
+          <label for="name">Full Name:</label>
+          {{form.name}}
+
+          <label for="username">Username:</label>
+          {{form.username}}
+
+          <label for="email">Email:</label>
+          {{form.email}}
+
+          <label for="password1">Password:</label>
+          {{form.password1}}
+
+			<label for="password2">Confirm Password:</label>
+          {{form.password2}}
+          <p><input type="checkbox" class="checkbox" style="display: inline-block;" required name="terms">
+              I have read and agree to the <a href="policy">Terms & Conditions</a>&nbsp; and &nbsp; <a href="privacy">Privacy Policy</a></p>
+        </fieldset>
+
+        <button type="submit">Sign Up</button>
+		  <center><div class="registration">
+            Already have an account?<br/>
+            <a class="login" href="accounts/login">
+              Login
+              </a>
+          </div></center>
+      </form>
+
+    </body>
+<style>
+input[type="checkbox"] {
+        display: none;
+}
+</style>
+<script>
+
+        function checkForm(form)
+        {
+            if(!form.terms.checked) {
+                alert("Please indicate that you accept the Terms and Conditions");
+                form.terms.focus();
+                return false;
+                }
+                return true;
+              }
+</script>
+
+<script>
+
+
+</script>
+
+</html>

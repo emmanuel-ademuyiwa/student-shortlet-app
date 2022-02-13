@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+{% load static %}
+{% load humanize %}
+<html lang="en">
+<head>
+	<title>Shelttry - Single Apartment</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="The Estate Teplate">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+	<link href="{% static 'plugins/fontawesome-free-5.0.1/css/fontawesome-all.css' %}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+	<link href="{% static 'plugins/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/listings_single_styles.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/listings_single_responsive.css' %}">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+</head>
+
+<body>
+
+
+<div class="super_container">
+
+	<!-- Home -->
+	<div class="home">
+		<!-- Image by: https://unsplash.com/@jbriscoe -->
+		<div class="home_background" style="background-image:url({% static 'images/download2.jpeg' %})"></div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="home_content">
+						<div class="home_title">
+							{% for object in products %}
+							<h2>{{object.hallname}}</h2>
+							{% endfor %}
+						</div>
+						<div class="breadcrumbs">
+							<!--span><a href="/">Home</a></span-->
+							<!--span><a href="search"> Search</a></span-->
+							<!--span><a href="list"> Explore</a></span-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Header -->
+
+	<header class="header trans_300">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_container d-flex flex-row align-items-center trans_300">
+
+						<!-- Logo -->
+
+						<div class="logo_container">
+							<a href="/">
+								<div class="logo">
+									<img src="{% static 'images/icons/logo3.png' %}" alt="">
+									<!--span>shelttry</span-->
+								</div>
+							</a>
+						</div>
+
+						<!-- Main Navigation -->
+
+						<nav class="main_nav">
+							<ul class="main_nav_list">
+								<li class="main_nav_item"><a href="/">home</a></li>
+								<li class="main_nav_item"><a href="{% url 'explore' %}">explore</a></li>
+								<li class="main_nav_item"><a href="{% url 'dashboard' %}">Post Your House</a></li>
+							</ul>
+						</nav>
+
+						<!-- Phone Home -->
+
+						<!--div class="phone_home text-center">
+							<span>+0080 234 567 84441</span>
+						</div-->
+
+						<!-- Hamburger -->
+
+						<div class="hamburger_container menu_mm">
+							<div class="hamburger menu_mm">
+								<i class="fas fa-bars trans_200 menu_mm"></i>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Menu -->
+
+		<div class="menu menu_mm">
+			<ul class="menu_list">
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="/">home</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="{% url 'explore' %}">explore</a>
+							</div>
+						</div>
+					</div>
+				</li>
+
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="{% url 'dashboard' %}">Post Your House</a>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+	</header>
+	<!-- Listing -->
+		{% for object in products %}
+	<div class="listing">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					
+					<!-- Listing Title -->
+					<div class="listing_title_container">
+						<div class="listing_title">{{object.hallname}}</div>
+						<p class="listing_text">{{object.shortDescription}}.</p>
+						<!--div class="room_tags">
+							<span class="room_tag"><a href="#">Hottub</a></span>
+							<span class="room_tag"><a href="#">Swimming Pool</a></span>
+							<span class="room_tag"><a href="#">Garden</a></span>
+							<span class="room_tag"><a href="#">Patio</a></span>
+							<span class="room_tag"><a href="#">Hard Wood Floor</a></span>
+						</div-->
+					</div>
+				</div>
+				
+				<!-- Listing Price -->
+				<div class="col-lg-4 listing_price_col clearfix">
+					<div class="featured_card_box d-flex flex-row align-items-center trans_300 float-lg-right">
+						<img src="{% static 'images/tag.png' %}">
+						<div class="featured_card_box_content">
+							<div class="featured_card_price_title trans_300">For Rent</div>
+							<div class="featured_card_price trans_300">₦{{object.price|intcomma}}</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col"><br>
+					
+					<!-- Listing Image Slider -->
+
+					<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+						<input id="num" type="hidden" value="{{object.numbers}}">
+						<div class="carousel-inner">
+						  <div class="carousel-item active"  id="image1URL">
+							<img class="d-block w-100" src="{{object.image1URL}}"  alt="First slide">
+							<div style="position: absolute;
+							top: 10px;
+							right: 270px;
+							background-color: black;
+							color: white;
+							padding-left: 15px;
+							padding-right: 15px;">1 / {{object.numbers}}</div>
+						  </div>
+						  <div class="carousel-item"  id="image2URL">
+							<img class="d-block w-100" src="{{object.image2URL}}" alt="Second slide">
+							<div style="position: absolute;
+							top: 10px;
+							right: 270px;
+							background-color: black;
+							color: white;
+							padding-left: 15px;
+							padding-right: 15px;">2 / {{object.numbers}}</div>
+						  </div>
+						  <div class="carousel-item"  id="image3URL">
+							<img class="d-block w-100" src="{{object.image3URL}}" alt="Third slide">
+							<div style="position: absolute;
+							top: 10px;
+							right: 270px;
+							background-color: black;
+							color: white;
+							padding-left: 15px;
+							padding-right: 15px;">3 / {{object.numbers}}</div>
+						  </div>
+						  <div class="carousel-item" id="image4URL">
+							<img class="d-block w-100" src="{{object.image4URL}}" alt="">
+							<div style="position: absolute;
+							top: 10px;
+							right: 270px;
+							background-color: black;
+							color: white;
+							padding-left: 15px;
+							padding-right: 15px;">4 / {{object.numbers}}</div>
+						  </div>
+						  <div class="carousel-item" id="image5URL">
+							<img class="d-block w-100" src="{{object.image5URL}}"  alt="">
+							<div style="position: absolute;
+							top: 10px;
+							right: 270px;
+							background-color: black;
+							color: white;
+							padding-left: 15px;
+							padding-right: 15px;">5 / {{object.numbers}}</div>
+						  </div>
+						  <div class="carousel-item" id="image6URL">
+							<img class="d-block w-100" src="{{object.image6URL}}" alt="">
+							<div style="position: absolute;
+								top: 10px;
+								right: 270px;
+								background-color: black;
+								color: white;
+								padding-left: 15px;
+								padding-right: 15px;">6 / {{object.numbers}}
+							</div>
+						  </div>
+						  <div class="carousel-item" id="image7URL">
+							<img class="d-block w-100" src="{{object.image7URL}}" alt="">
+							<div style="position: absolute;
+							top: 10px;
+							right: 270px;
+							background-color: black;
+							color: white;
+							padding-left: 15px;
+							border-radius: 5px;
+							padding-right: 15px;">7 / {{object.numbers}}</div>
+						  </div>
+						  <div class="carousel-item" id="image8URL">
+							<img class="d-block w-100" src="{{object.image8URL}}" alt="">
+							<div style="position: absolute;
+							top: 10px;
+							right: 270px;
+							background-color: black;
+							color: white;
+							padding-left: 15px;
+							padding-right: 15px;">8 / {{object.numbers}}</div>
+						  </div>
+						  <div class="carousel-item" id="image9URL">
+							<img class="d-block w-100" src="{{object.image9URL}}"  alt="">
+							<div style="position: absolute;
+							top: 10px;
+							right: 270px;
+							background-color: black;
+							color: white;
+							padding-left: 15px;
+							padding-right: 15px;">9 / {{object.numbers}}</div>
+						  </div>
+						  <div class="carousel-item" id="image10URL">
+							<img class="d-block w-100" src="{{object.image10URL}}" alt="">
+							<div style="position: absolute;
+							top: 10px;
+							right: 270px;
+							background-color: black;
+							color: white;
+							padding-left: 15px;
+							padding-right: 15px;">10 / {{object.numbers}}</div>
+						  </div>
+						</div>
+						
+						<a class="carousel-control-prev" href="#carouselExampleControls"  role="button" data-slide="prev">
+						  <span class="carousel-control-prev-icon"  aria-hidden="true"></span>
+						  <span class="sr-only">Previous</span>
+						</a>
+						
+						<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+						  <span class="carousel-control-next-icon"  aria-hidden="true"></span>
+						  <span class="sr-only">Next</span>
+						</a>
+					  </div>
+
+				</div>
+			</div>
+					
+			<div class="listing_details">
+				{% if object.extrafacility == "empty" %}
+				<div class="listing_subtitle">Extra Facilities</div>
+				{% else %}
+				<div class="listing_subtitle"></div>
+				{% endif %}
+				<p class="listing_details_text">{{object.extrafacility}}</p>
+				<div class="rooms">
+				</div>
+				
+			</div>
+			
+			<!-- Listing Description -->
+			<div class="listing_description">
+				<div class="listing_subtitle">Description</div>
+				<p class="listing_description_text">{{object.description}}</p>
+			</div>
+
+			<div class="row listing_content_row">
+				
+				<!-- Search Sidebar -->
+
+				<div class="col-lg-4 sidebar_col">
+					<!-- Search Box -->
+					<div class="search_box">
+						<div class="search_box_content">
+							<!-- Search Box Title -->
+							<div class="search_box_title text-center">
+								<div class="search_box_title_inner">
+									<div class="search_box_title_icon d-flex flex-column align-items-center justify-content-center"><img src="{% static 'images/search.png' %}" alt=""></div>
+									<span>search your home</span>
+								</div>
+							</div>
+
+							<!-- Search Form -->
+							<form class="search_form" action="{% url 'search' %}" method="GET">
+								<div class="search_box_container">
+									<ul class="dropdown_row clearfix">
+										<li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Location</div>
+											<select name="town" id="town" class="dropdown_item_select">
+												<option>Ago</option>
+												<option>Ijebu Igbo</option>
+												<option>Oru</option>
+											</select>
+										</li>
+										<li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Property Type</div>
+											<select name="type" id="type" class="dropdown_item_select">
+												<option>Flat</option>
+												<option>Self-contain</option>
+												<option>Single room</option>
+											</select>
+										</li>
+
+										<li class="dropdown_item dropdown_item_6">
+											<div class="dropdown_item_title">Min Price</div>
+											<select name="min_price" id="min_price" class="dropdown_item_select">
+												<option>10000</option>
+												<option>20000</option>
+                                                <option>30000</option>
+                                                <option>40000</option>
+												<option>50000</option>
+											</select>
+										</li>
+										<li class="dropdown_item dropdown_item_6">
+											<div class="dropdown_item_title">Max Price</div>
+											<select name="max_price" id="max_price" class="dropdown_item_select">
+												<option>40000</option>
+												<option>50000</option>
+                                                <option>60000</option>
+                                                <option>70000</option>
+												<option>80000</option>
+                                                <option>90000</option>
+												<option>100000</option>
+											</select>
+										</li>
+										<li>
+
+										</li>
+										<li class="dropdown_item">
+											<div class="search_button">
+												<input value="search" type="submit" class="search_submit_button">
+											</div>
+								</div>
+							</form>
+						</div>	
+					</div>
+
+					
+				</div>
+
+				<!-- Listing -->
+
+				<div class="col-lg-8 listing_col">
+
+					<div class="hello">
+						<div class="footer_col_title">say hello</div>
+						<div class="footer_contact_form_container">
+							<form id="hello_contact_form" class="footer_contact_form" action="post">
+								<input id="hello_contact_form_name" class="input_field contact_form_name" type="text" placeholder="Name" required="required" data-error="Name is required.">
+								<input id="hello_contact_form_email" class="input_field contact_form_email" type="email" placeholder="E-mail" required="required" data-error="Valid email is required.">
+								<textarea id="hello_contact_form_message" class="text_field contact_form_message" name="message" placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
+								<button id="hello_contact_send_btn" type="submit" class="contact_send_btn trans_200" value="Submit">send</button>
+							</form>
+						</div>
+					</div>
+					
+					<!-- Listing Additional Details >
+					<div class="listing_additional_details">
+						<div class="listing_subtitle">Additional Details</div>
+						<ul class="additional_details_list">
+							<li class="additional_detail"><span>bedroom features:</span> Main Floor Master Bedroom, Walk-In Closet</li>
+							<li class="additional_detail"><span>dining area:</span> Breakfast Counter/Bar, Living/Dining Combo</li>
+							<li class="additional_detail"><span>doors & windows:</span> Bay Window</li>
+							<li class="additional_detail"><span>entry location:</span> Mid Level</li>
+							<li class="additional_detail"><span>floors:</span> Raised Foundation, Vinyl Tile, Wall-to-Wall Carpet, Wood</li>
+						</ul>
+					</div-->
+					
+					<!-- Listing Video >
+					<div class="listing_video">
+						<div class="listing_subtitle">Property Video</div>
+						<div class="listing_video_link">
+							<a class="video" href="https://vimeo.com/99340873" title=""><img src="images/listing_video.jpg" alt="https://www.pexels.com/u/binyaminmellish/"></a>
+							<div class="video_play"><img src="images/play.svg" alt=""></div>
+						</div>
+					</div-->
+
+					<!-- Listing Map >
+					<div class="listing_map">
+						<div class="listing_subtitle">Property on map</div>
+						<div id="google_map">
+							<div class="map_container">
+								<div id="map"></div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+			{% endfor %}
+	<!-- Newsletter -->
+
+	<div class="newsletter">
+		<div class="container">
+			<div class="row row-equal-height">
+
+				<div class="col-lg-6">
+					<div class="newsletter_title">
+						<h3>subscribe to our newsletter</h3>
+						<span class="newsletter_subtitle">Get the latest offers</span>
+					</div>
+					<div class="newsletter_form_container">
+						<form action="{% url 'subscribe' %}" method="post">
+														{% csrf_token %}
+							<div class="newsletter_form_content d-flex flex-row">
+								<input type="text" name="name" class="newsletter_name" id="sname" placeholder="Name" required="required">
+							</div><br/>
+							<div class="newsletter_form_content d-flex flex-row">
+								<input class="newsletter_email" name="email" type="email" placeholder="Your email here" required="required" data-error="Valid email is required."><br>
+								<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_200" value="Submit">subscribe</button>
+							</div>
+
+						</form><br/>
+					</div>
+				</div>
+
+				<!--div class="col-lg-6">
+					<div class="newsletter_title">
+						<h3>subscribe to our newsletter</h3>
+						<span class="newsletter_subtitle">Get the latest offers</span>
+					</div>
+						<div class="weekly_offer">
+							<div class="weekly_offer_content d-flex flex-row">
+								<form action="subscribe" method="post">
+														{% csrf_token %}
+							<div class="newsletter_form_content d-flex flex-row">
+								<input type="text" name="name" class="newsletter_name" id="sname" placeholder="Name" required="required">
+							</div>
+							<div class="newsletter_form_content d-flex flex-row">
+								<input class="newsletter_email" name="email" type="email" placeholder="Your email here" required="required" data-error="Valid email is required."><br>
+								<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_200" value="Submit">subscribe</button>
+							</div>
+
+						</form>
+							</div>
+							<div class="weekly_offer_image" style="background-image:url({% static 'images/weekly.jpg' %})"></div>
+						</div>
+					</a>
+				</div-->
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+
+				<!-- Footer About -->
+				<div class="col-lg-3 footer_col">
+					<div class="footer_col_title">
+						<div class="logo_container">
+							<a href="/">
+								<div class="logo">
+									<img src="{% static 'images/icons/logo3.png' %}" alt="">
+									<span>Shelttry</span>
+								</div>
+							</a>
+						</div><br/><br/>
+					</div>
+					<div class="footer_social">
+						<ul class="footer_social_list">
+							<li class="footer_social_item"><a href="https://www.instagram.com/shelttry/"><i class="fab fa-instagram"></i></a></li>
+							<li class="footer_social_item"><a href="https://www.facebook.com/Shelttry-102136874904339/?ref=bookmarks"><i class="fab fa-facebook-f"></i></a></li>
+							<li class="footer_social_item"><a href="https://wa.me/+2349063435621"><i class="fab fa-whatsapp"></i></a></li>
+						</ul>
+					</div>
+					<div class="footer_about">
+						<p>We have here an open platform, houses chosen to your taste, whereby you can rent an apartment directly from the Agents or Landlords.<br> We recommend you give us your feedback.</p>
+					</div>
+				</div>
+
+				<!-- Footer Useful Links -->
+				<div class="col-lg-3 footer_col">
+					<div class="footer_col_title">quick links</div>
+					<ul class="footer_useful_links">
+						<li class="useful_links_item"><a href="/">Home</a></li>
+						<li class="useful_links_item"><a href="explore">Explore</a></li>
+						<li class="useful_links_item"><a href="#locations">Locations</a></li>
+
+					</ul>
+				</div>
+
+				<!-- Footer Contact Form -->
+				<div class="col-lg-3 footer_col">
+					<div class="footer_col_title">Give us your feedback</div>
+					<div class="footer_contact_form_container">
+						<form id="footer_contact_form" class="footer_contact_form" action="feedback" method="post">
+												{% csrf_token %}
+							<input id="contact_form_name" name="name" class="input_field contact_form_name" type="text" placeholder="Name" required="required" data-error="Name is required.">
+							<input id="contact_form_email" name="email" class="input_field contact_form_email" type="email" placeholder="E-mail" required="required" data-error="Valid email is required.">
+							<textarea id="contact_form_message" class="text_field contact_form_message" name="message" placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
+							<center><button id="contact_send_btn" type="submit" class="contact_send_btn trans_200" value="Submit">send</button></center>
+						</form>
+					</div>
+				</div>
+
+				<!-- Footer Contact Info -->
+
+				<div class="col-lg-3 footer_col">
+					<div class="footer_col_title">contact info</div>
+					<ul class="contact_info_list">
+            <li class="contact_info_item d-flex flex-row">
+							<div class="footer_social_item"><a href="https://wa.me/+2349063435621"><i class="fab fa-whatsapp"></i></a></div>
+							<div class="contact_info_text"><a href="https://wa.me/+2349063435621"> +234 906 343 5621</a></div>
+						</li>
+						<li class="contact_info_item d-flex flex-row">
+							<div><div class="contact_info_icon"><img src="{% static 'images/phone-call.png' %}" alt=""></div></div>
+							<div class="contact_info_text"><a href="tel:09063435621">+234 906 343 5621</a></div>
+						</li>
+						<li class="contact_info_item d-flex flex-row">
+							<div><div class="contact_info_icon"><img src="{% static 'images/message.png' %}" alt=""></div></div>
+							<div class="contact_info_text"><a href="mailto:shelttry@gmail.com?Subject=Hello" target="_top">info@shelttry.com</a></div>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+	</footer>
+
+	<!-- Credits -->
+
+	<div class="credits">
+		<span>
+			<p>&copy; <script>document.write(new Date().getFullYear());</script> Shelttry. All Rights Reserved<br>
+			   <a href="policy">Terms & Conditions</a>&nbsp; and &nbsp;
+			   <a href="privacy">Privacy Policy</a>
+			</p>
+		</span>
+	</div>
+
+</div>
+
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+<script src="{% static 'plugins/easing/easing.js' %}"></script>
+<script src="{% static 'plugins/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
+<script src="{% static 'js/listings_single_custom.js' %}"></script>
+<script src="{% static 'js/listings_single.js' %}"></script>
+
+</body>
+
+</html>

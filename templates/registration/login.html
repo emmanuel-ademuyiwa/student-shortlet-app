@@ -1,0 +1,65 @@
+{% load static %}
+{% static "images" as baseUrl %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/c.css' %}">
+
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login Form</title>
+        <link rel="stylesheet" href="css/normalize.css">
+        <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+
+      <form action="" method="POST">
+        {% csrf_token %}
+
+          <center><a href="/" ><img src="{% static 'images/icons/logo4.png' %}" alt=""></a></center>
+
+        <fieldset>
+
+          <legend>Login</legend>
+			<div>
+                {% for message in messages %}
+                <div class="alert {{message.tags}} alert-dismissable" role="alert">
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+                        {{ message | safe }}
+            </div>
+            {% endfor %}
+                 {% if form.errors %}
+                    <p> Your username and password didn't match. Please try again</p>
+                {% endif %}
+
+                {% if next %}
+                    {% if user.is_authenticated %}
+                            <p>Your account does not have access to this page. To proceed,
+                            please login with an account that has access.</p>
+                    {% else %}
+                            <p>Please login to see this page.</p>
+                    {% endif %}
+                {% endif %}
+			</div>
+          <label for="username">Email:</label>
+          <input type="email" id="username" name="username">
+
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password">
+             <span class="push-left">
+            <a data-toggle="modal" href="{% url 'password_reset' %}"> Forgot Password?</a>
+            </span>
+        </fieldset>
+
+        <button name="submit" id="submit" type="submit">Login</button>
+
+          <center><div class="registration">
+            Don't have an account yet?<br/>
+            <a href="{% url 'signup' %}">Sign Up</a>
+          </div></center>
+      </form>
+
+    </body>
+</html>
