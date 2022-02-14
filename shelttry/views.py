@@ -137,8 +137,14 @@ def register(request):
 @login_required
 def detail(request, slug):
     posts = Upload.objects.filter(slug=slug)
-    context = {'posts': posts}
-    return render(request, 'detail.html', context)
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(email=request.user)
+        current_user = request.user
+        return render(request, 'detail.html', {'posts': posts, 
+        'current_user':current_user, 'profile':profile})
+    else:
+        posts = Upload.objects.filter(slug=slug)
+        return render(request, 'detail.html', {'posts': posts})
 
 
 def search(request):
@@ -152,29 +158,64 @@ def search(request):
         title = 'Searched Houses'
         posts = Upload.objects.filter(town__icontains=town, type__icontains=type,
                                        price__range=(min, max))
-        return render(request, 'destinations.html', {'posts': posts, 'title': title})
+        if request.user.is_authenticated:
+            profile = Profile.objects.get(email=request.user)
+            current_user = request.user
+            return render(request, 'destinations.html', {'posts': posts, 'title': title, 
+            'current_user':current_user, 'profile':profile})
+        else:
+            posts = Upload.objects.filter(town__icontains=town, type__icontains=type,
+                                        price__range=(min, max))
+            return render(request, 'destinations.html', {'posts': posts, 'title': title})
     #return render(request, 'post.html')
 
 
 def explore(request):
     title = 'Available Houses'
     posts = Upload.objects.all()    
-    return render(request, 'destinations.html', {'posts': posts, 'title':title})
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(email=request.user)
+        current_user = request.user
+        return render(request, 'destinations.html', {'posts': posts, 'title': title, 
+        'current_user':current_user, 'profile':profile})
+    else:
+        posts = Upload.objects.all()    
+        return render(request, 'destinations.html', {'posts': posts, 'title': title})
 
 def ago(request):
     title = 'Houses in Ago'
-    posts = Upload.objects.filter(town__icontains="ago-iwoye")
-    return render(request, 'destinations.html', {'posts': posts, 'title': title})
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(email=request.user)
+        current_user = request.user
+        return render(request, 'destinations.html', {'posts': posts, 'title': title, 
+        'current_user':current_user, 'profile':profile})
+    else:
+        posts = Upload.objects.filter(town__icontains="ago-iwoye")
+        return render(request, 'destinations.html', {'posts': posts, 'title': title})
 
 def ijebu(request):
     title = 'Houses in Ijebu-Igbo'
     posts = Upload.objects.filter(town__icontains="ijebu-igbo")
-    return render(request, 'destinations.html', {'posts': posts, 'title': title})
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(email=request.user)
+        current_user = request.user
+        return render(request, 'destinations.html', {'posts': posts, 'title': title, 
+        'current_user':current_user, 'profile':profile})
+    else:
+        posts = Upload.objects.filter(town__icontains="ijebu-igbo")
+        return render(request, 'destinations.html', {'posts': posts, 'title': title})
 
 def oru(request):
     title = 'Houses in Oru'
     posts = Upload.objects.filter(town__icontains="oru")
-    return render(request, 'destinations.html', {'posts': posts, 'title': title})
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(email=request.user)
+        current_user = request.user
+        return render(request, 'destinations.html', {'posts': posts, 'title': title, 
+        'current_user':current_user, 'profile':profile})
+    else:
+        posts = Upload.objects.filter(town__icontains="oru")
+        return render(request, 'destinations.html', {'posts': posts, 'title': title})
 
 
 def index(request):
