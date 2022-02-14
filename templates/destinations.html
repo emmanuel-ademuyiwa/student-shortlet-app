@@ -64,25 +64,28 @@
 
 						<!-- Main Navigation -->
 
+						{% if current_user.is_anonymous or profile.purpose != 'Agent' %}
+
 						<nav class="main_nav">
 							<ul class="main_nav_list">
 								<li class="main_nav_item"><a href="/">Home</a></li>
-								<li class="main_nav_item"><a href="explore">Explore</a></li>
-								<li class="main_nav_item"><a href="dashboard">Post Your House</a></li>
+								<li class="main_nav_item"><a href="{% url 'explore' %}">Explore</a></li>
+
 							</ul>
 						</nav>
-
-						<!-- Phone Home -->
-
-						<div class="phone_home text-center">
-							<span>+0080 234 567 84441</span>
-						</div>
-
-						<!-- Hamburger -->
+						{% else %}
+						<nav class="main_nav">
+							<ul class="main_nav_list">
+								<li class="main_nav_item"><a href="/">Home</a></li>
+								<li class="main_nav_item"><a href="{% url 'explore' %}">Explore</a></li>
+								<li id="purp" style="visibility: visible;" class="main_nav_item"><a href="dashboard">Dashboard</a></li>
+							</ul>
+						</nav>
+						{% endif %}
 
 						<div class="hamburger_container menu_mm">
 							<div class="hamburger menu_mm">
-								<i class="fas fa-bars trans_200 menu_mm"></i>
+								<i class="fas fa-bars trans_200 menu_mm" style="font-weight: bold; color: #fff;"></i>
 							</div>
 						</div>
 
@@ -92,6 +95,9 @@
 		</div>
 
 		<!-- Menu -->
+
+		{% if request.user.is_anonymous or profile.purpose != 'Agent'%}
+
 
 		<div class="menu menu_mm">
 			<ul class="menu_list">
@@ -104,26 +110,56 @@
 						</div>
 					</div>
 				</li>
+
 				<li class="menu_item">
 					<div class="container">
 						<div class="row">
 							<div class="col">
-								<a href="explore">Explore</a>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li class="menu_item">
-					<div class="container">
-						<div class="row">
-							<div class="col">
-								<a href="dashboard">Post Your House</a>
+								<a href="{% url 'explore' %}">Explore</a>
 							</div>
 						</div>
 					</div>
 				</li>
 			</ul>
 		</div>
+
+		{% else %}
+
+		<div class="menu menu_mm">
+			<ul class="menu_list">
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="/">Home</a>
+							</div>
+						</div>
+					</div>
+				</li>
+
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="{% url 'explore' %}">Explore</a>
+							</div>
+						</div>
+					</div>
+				</li>
+
+				<li class="menu_item" id="purp1" >
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="dashboard">Dashboard</a>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		{% endif %}
+
 
 	</header>
 
@@ -163,7 +199,7 @@
 											</select>
 										</li>
 										<li class="dropdown_item dropdown_item_5">
-											<div class="dropdown_item_title">Property Type</div>
+											<div class="dropdown_item_title">Hall Type</div>
 											<select name="type" id="type" class="dropdown_item_select">
 												<option>Flat</option>
 												<option>Self-contain</option>
@@ -174,23 +210,37 @@
 										<li class="dropdown_item dropdown_item_6">
 											<div class="dropdown_item_title">Min Price</div>
 											<select name="min_price" id="min_price" class="dropdown_item_select">
-												<option>10000</option>
-												<option>20000</option>
-                                                <option>30000</option>
-                                                <option>40000</option>
-												<option>50000</option>
+												<option>10,000</option>
+												<option>20,000</option>
+                                                <option>30,000</option>
+                                                <option>40,000</option>
+												<option>50,000</option>
+                                                <option>60,000</option>
+                                                <option>70,000</option>
+												<option>80,000</option>
 											</select>
 										</li>
 										<li class="dropdown_item dropdown_item_6">
 											<div class="dropdown_item_title">Max Price</div>
 											<select name="max_price" id="max_price" class="dropdown_item_select">
-												<option>40000</option>
-												<option>50000</option>
-                                                <option>60000</option>
-                                                <option>70000</option>
-												<option>80000</option>
-                                                <option>90000</option>
-												<option>100000</option>
+												<option>40,000</option>
+												<option>50,000</option>
+                                                <option>60,000</option>
+                                                <option>70,000</option>
+												<option>80,000</option>
+                                                <option>90,000</option>
+												<option>100,000</option>
+												<option>110,000</option>
+												<option>120,000</option>
+												<option>130,000</option>
+												<option>140,000</option>
+												<option>150,000</option>
+												<option>160,000</option>
+												<option>170,000</option>
+												<option>180,000</option>
+												<option>190,000</option>
+												<option>200,000</option>
+
 											</select>
 										</li>
 										<li>
@@ -215,7 +265,7 @@
 				<div class="col-lg-8 listings_col">
 
 					<!-- Listings Item -->
-					{% for a in post %}
+					{% for post in posts %}
 
 					<div class="listing_item" id="locations">
 						<div class="listing_item_inner d-flex flex-md-row flex-column trans_300">
@@ -225,10 +275,10 @@
 										<div class="room-thumbnail-slides mb-50">
 											<div id="" class="carousel slide" data-ride="carousel">
 												<div class="carousel-inner">
-													<a href="{% url 'detail' a.slug %}">
+													<a href="{% url 'detail' post.slug %}">
 														
 														<div class="card featured_card trans_300">
-															<img class="card-img-top" src="{{a.image1URL}}" width="500" height="250">
+															<img class="card-img-top" src="{{post.image1URL}}" width="500" height="250">
 														</div>
 													</a>
 												</div>
@@ -236,29 +286,29 @@
 										</div>
 									</div>
 								</div>
-								<a href="{% url 'detail' a.slug %}">
+								<a href="{% url 'detail' post.slug %}">
 								<div class="featured_card_box d-flex flex-row align-items-center trans_300">
 									<img src="{% static 'images/tag.png' %}">
 									<div class="featured_card_box_content">
-										<div class="featured_card_price_title trans_300">For Rent   &nbsp; | &nbsp; {{a.availability}}</div>
-										<div class="featured_card_price trans_300">₦{{a.price|intcomma}}</div>
+										<div class="featured_card_price_title trans_300">For Rent   &nbsp; | &nbsp; {{post.availability}}</div>
+										<div class="featured_card_price trans_300">₦{{post.price|intcomma}}</div>
 									</div>
 								</div>
 								</a>
 							</div>
 							<div class="listing_content"><br>
-								<span class="room_title"  style="text-transform:uppercase;">{{a.type}} &nbsp; | &nbsp; {{a.town}}</span><br/><br/>
-								<span class="room_title" style="text-transform:capitalize;"></span>
-								<div class="listing_text">{{a.shortDescription}}</div><br/>
+								<span class="room_title"  style="text-transform:uppercase;">{{post.type}} &nbsp; | &nbsp; {{post.town}}</span><br/><br/>
+								<span class="room_title" style="text-transform:capitalize;">{{post.hallname}}</span>
+								<div class="listing_text">{{post.shortDescription}}</div><br/>
 								<ul>
 						<li class="contact_info_item d-flex flex-row">
-							<div><div class="contact_info_icon"><a href="tel:09063435621"><img src="{% static 'images/phone-call.png' %}" alt=""></a></div></div>
-							<div class="contact_info_text"><a href="https://wa.me/+2349063435621">&nbsp;Contact Agent</a></div>
+							<div><div class="contact_info_icon"><a href="tel:{{post.number}}"><img src="{% static 'images/phone-call.png' %}" alt=""></a></div></div>
+							<div class="contact_info_text"><a href="tel:{{post.number}}">&nbsp;{{post.number}}</a></div>
 						</li>
 									<li class="contact_info_item d-flex flex-row">
 
-							<div class="footer_social_item"><a href="https://wa.me/+2349063435621"><i class="fab fa-whatsapp"></i></a></div>
-							<div class="contact_info_text"><a href="https://wa.me/+2349063435621"> Contact Agent </a></div>
+							<div class="footer_social_item"><a href="https://wa.me/{{post.number}}"><i class="fab fa-whatsapp"></i></a></div>
+							<div class="contact_info_text"><a href="https://wa.me/{{post.number}}"> {{post.number}}</a></div>
 						</li>
 
 

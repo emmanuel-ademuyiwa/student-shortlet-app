@@ -5,7 +5,7 @@ from django.conf import settings
 from django.core.validators import RegexValidator
 # Create your models here.
 from django.shortcuts import reverse
-from matplotlib.pyplot import cla
+
 
 type = [
     ['Flat', 'Flat'],
@@ -47,8 +47,9 @@ default = 'pics'
 class Profile(AbstractUser):
     name = models.CharField(max_length=255)
     email = models.EmailField(max_length=255, unique=True)
-    phone = models.IntegerField(null=True, blank=True)
-    whatsApp = models.IntegerField(null=True, blank=True)
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+2349063435621'.")
+    phone = models.CharField(validators=[phone_regex], max_length=14, null=True, blank=True)
+    whatsApp = models.CharField(validators=[phone_regex], max_length=14, null=True, blank=True)
     purpose = models.CharField(max_length=7)
     REQUIRED_FIELDS = ['phone', 'name', 'purpose']
     USERNAME_FIELD = 'email'
@@ -84,6 +85,7 @@ class Testimonial(models.Model):
 
 class Upload(models.Model):
     hallname = models.CharField(max_length=100)
+    shortDescription = models.CharField(max_length=3000)
     description = models.TextField(max_length=5000)
     type = models.CharField(max_length=100)
     town = models.CharField(max_length=100)
@@ -92,6 +94,7 @@ class Upload(models.Model):
     landlord = models.CharField(max_length=100)
     email = models.EmailField(max_length=100, blank=True)
     phone = models.CharField(max_length=100)
+    whatsApp = models.CharField(max_length=100)
     extra_facility = models.CharField(max_length=1000, blank=True)
     numbers = models.PositiveIntegerField(null=True)
     slug = models.SlugField(max_length=200, unique=True, null=False)

@@ -1,3 +1,7 @@
-if (document.getElementById('purpose').textContent == 'Student'){
-    document.getElementById('purp').style.visibility = hidden;
+if (user_is_anonymous()){
+    alert('User is not logged in')
+}
+else {
+
+    alert('User is logged in')
 }

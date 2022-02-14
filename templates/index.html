@@ -98,12 +98,12 @@
 						
 						<!-- Main Navigation -->
 
-						{% if profile.purpose == "Student" %}
+						{% if current_user.is_anonymous or profile.purpose != 'Agent' %}
 
 						<nav class="main_nav">
 							<ul class="main_nav_list">
 								<li class="main_nav_item"><a href="/">Home</a></li>
-								<li class="main_nav_item"><a href="explore">Explore</a></li>
+								<li class="main_nav_item"><a href="{% url 'explore' %}">Explore</a></li>
 
 							</ul>
 						</nav>
@@ -111,8 +111,8 @@
 						<nav class="main_nav">
 							<ul class="main_nav_list">
 								<li class="main_nav_item"><a href="/">Home</a></li>
-								<li class="main_nav_item"><a href="explore">Explore</a></li>
-								<li id="purp" style="visibility: visible;" class="main_nav_item"><a href="dashboard">Post Your House</a></li>
+								<li class="main_nav_item"><a href="{% url 'explore' %}">Explore</a></li>
+								<li id="purp" style="visibility: visible;" class="main_nav_item"><a href="dashboard">Dashboard</a></li>
 							</ul>
 						</nav>
 						{% endif %}
@@ -122,6 +122,7 @@
 								<i class="fas fa-bars trans_200 menu_mm" style="font-weight: bold; color: #fff;"></i>
 							</div>
 						</div>
+
 					</div>
 				</div>
 			</div>
@@ -129,7 +130,7 @@
 
 		<!-- Menu -->
 
-		{% if profile.purpose == "Student" %}
+		{% if request.user.is_anonymous or profile.purpose != 'Agent'%}
 
 
 		<div class="menu menu_mm">
@@ -148,7 +149,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col">
-								<a href="explore">Explore</a>
+								<a href="{% url 'explore' %}">Explore</a>
 							</div>
 						</div>
 					</div>
@@ -174,7 +175,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col">
-								<a href="explore">Explore</a>
+								<a href="{% url 'explore' %}">Explore</a>
 							</div>
 						</div>
 					</div>
@@ -184,7 +185,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col">
-								<a href="dashboard">Post Your House</a>
+								<a href="dashboard">Dashboard</a>
 							</div>
 						</div>
 					</div>
@@ -236,7 +237,7 @@
 										</li>
 
 										<li class="dropdown_item dropdown_item_5">
-											<div class="dropdown_item_title">Property Type</div>
+											<div class="dropdown_item_title">Hall Type</div>
 											<select name="type" id="type" class="dropdown_item_select">
 												<option>Flat</option>
 												<option>Self-contain</option>
@@ -247,23 +248,37 @@
 										<li class="dropdown_item dropdown_item_6">
 											<div class="dropdown_item_title">Min Price</div>
 											<select name="min_price" id="min_price" class="dropdown_item_select">
-												<option>10000</option>
-												<option>20000</option>
-                                                <option>30000</option>
-                                                <option>40000</option>
-												<option>50000</option>
+												<option>10,000</option>
+												<option>20,000</option>
+                                                <option>30,000</option>
+                                                <option>40,000</option>
+												<option>50,000</option>
+                                                <option>60,000</option>
+                                                <option>70,000</option>
+												<option>80,000</option>
 											</select>
 										</li>
 										<li class="dropdown_item dropdown_item_6">
 											<div class="dropdown_item_title">Max Price</div>
 											<select name="max_price" id="max_price" class="dropdown_item_select">
-												<option>40000</option>
-												<option>50000</option>
-                                                <option>60000</option>
-                                                <option>70000</option>
-												<option>80000</option>
-                                                <option>90000</option>
-												<option>100000</option>
+												<option>40,000</option>
+												<option>50,000</option>
+                                                <option>60,000</option>
+                                                <option>70,000</option>
+												<option>80,000</option>
+                                                <option>90,000</option>
+												<option>100,000</option>
+												<option>110,000</option>
+												<option>120,000</option>
+												<option>130,000</option>
+												<option>140,000</option>
+												<option>150,000</option>
+												<option>160,000</option>
+												<option>170,000</option>
+												<option>180,000</option>
+												<option>190,000</option>
+												<option>200,000</option>
+
 											</select>
 										</li>
 										<li>
@@ -508,7 +523,6 @@
 		</div>
 	</div>
 	<div class="cta_1">
-		<div class="cta_1_background" style="background-image:url(images/cta_1.jpg)"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col">
@@ -646,6 +660,12 @@
 <script src="{% static 'plugins/scrollTo/jquery.scrollTo.min.js' %}"></script>
 <script src="{% static 'plugins/easing/easing.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
+<script src="{% static 'js/purpose.js' %}"></script>
+
+<script>
+	user = console.log
+	console.log(user)
+</script>
 
 </body>
 </html>

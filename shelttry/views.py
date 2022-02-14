@@ -1,7 +1,8 @@
 import email
+from urllib import request
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from .models import Profile, Subscriber, Contact, Testimonial, Upload
-from .form import CreateUserForm, DocumentForm
+from .form import CreateUserForm, DocumentForm, ProfileForm
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from decimal import Decimal as D
@@ -23,20 +24,29 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 #from django.core.mmail import send_mail, BadHeaderError
 # Create your views here.
 
+def profile_check(request):
+    whatsapp = ""
+    profile = Profile.objects.get(email=request.email)
+    return profile.whatsApp == len(whatsapp)
 
 @login_required
 def post(request):
+    title = 'Upload page'
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('dashboard')
+        else:
+            return HttpResponse('<h2>Please check the profile page to update your profile. </h2>')
     else:
-        form = DocumentForm(initial={'landlord': request.user})
-    return render(request, 'post.html', {'form': form})
+        form = DocumentForm(initial={'landlord': request.user, 
+        'phone':request.user.phone, 'whatsApp':request.user.whatsApp})
+    return render(request, 'post.html', {'form': form, 'title':title})
 
 
 def edit(request, id):
+    title = 'Edit post'
     hall = get_object_or_404(Upload, id=id)
     if request.method == "POST":
         form = DocumentForm(request.POST, request.FILES, instance=hall)
@@ -47,7 +57,22 @@ def edit(request, id):
             return redirect('dashboard')
     else:
         form = DocumentForm(instance=hall)
-    context = {'form': form}
+    context = {'form': form, 'title':title}
+    return render(request, 'edit.html', context)
+
+def profile(request, id):
+    title = 'profile'
+    hall = get_object_or_404(Profile, id=request.user.id)
+    if request.method == "POST":
+        form = ProfileForm(request.POST, instance=hall)
+        if form.is_valid():
+            hall = form.save(commit=False)
+            #hall.landlord = request.user
+            hall.save()
+            return redirect('profile', id=request.user.id)
+    else:
+        form = ProfileForm(instance=hall)
+    context = {'form': form, 'title':title}
     return render(request, 'edit.html', context)
 
 
@@ -102,46 +127,69 @@ def register(request):
         if form.is_valid():
             user = form.save()
             user = form.cleaned_data.get('username')
-            messages.success(request, 'Success: Account created for ' + user + '\n was successful.')
+            messages.success(request, 'Success: Account created for ' + email + '\n was successful.')
             return redirect('login')
     context = {'form': form}
     return render(request, 'register.html', context)
 
 
+
 @login_required
 def detail(request, slug):
-    products = Upload.objects.filter(slug=slug)
-    context = {'products': products}
+    posts = Upload.objects.filter(slug=slug)
+    context = {'posts': posts}
     return render(request, 'detail.html', context)
+
+
+def search(request):
+    if request.method == 'GET':
+        town = request.GET.get('town')
+        type = request.GET.get('type')
+        min_price = request.GET.get('min_price')
+        min = min_price.replace(',', '')
+        max_price = request.GET.get('max_price')
+        max = max_price.replace(',', '')
+        title = 'Searched Houses'
+        posts = Upload.objects.filter(town__icontains=town, type__icontains=type,
+                                       price__range=(min, max))
+        return render(request, 'destinations.html', {'posts': posts, 'title': title})
+    #return render(request, 'post.html')
 
 
 def explore(request):
     title = 'Available Houses'
-    dests = Upload.objects.all()    
-    return render(request, 'explore.html', {'dests': dests, 'title':title})
+    posts = Upload.objects.all()    
+    return render(request, 'destinations.html', {'posts': posts, 'title':title})
 
 def ago(request):
     title = 'Houses in Ago'
-    post = Upload.objects.filter(town__icontains="ago-iwoye")
-    return render(request, 'destinations.html', {'post': post, 'title': title})
+    posts = Upload.objects.filter(town__icontains="ago-iwoye")
+    return render(request, 'destinations.html', {'posts': posts, 'title': title})
 
 def ijebu(request):
     title = 'Houses in Ijebu-Igbo'
-    post = Upload.objects.filter(town__icontains="ijebu-igbo")
-    return render(request, 'destinations.html', {'post': post, 'title': title})
+    posts = Upload.objects.filter(town__icontains="ijebu-igbo")
+    return render(request, 'destinations.html', {'posts': posts, 'title': title})
 
 def oru(request):
     title = 'Houses in Oru'
-    post = Upload.objects.filter(town__icontains="oru")
-    return render(request, 'destinations.html', {'post': post, 'title': title})
+    posts = Upload.objects.filter(town__icontains="oru")
+    return render(request, 'destinations.html', {'posts': posts, 'title': title})
 
 
 def index(request):
     test = Contact.objects.all()
     dests = Upload.objects.all()
-    #profile = Profile.objects.get(email=request.user)
-    context = {'dests': dests, 'test': test}
-    return render(request, 'index.html', context)
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(email=request.user)
+        current_user = request.user
+        context = {'dests': dests, 'test': test, 'current_user':current_user, 'profile':profile}
+        return render(request, 'index.html', context)
+    else:
+        current_user = request.user
+        context = {'dests': dests, 'test': test, 'current_user':current_user}
+        return render(request, 'index.html', context)
+
 
 
 
@@ -164,20 +212,6 @@ def feedback(request):
 
 def success(request):
     return HttpResponse('Successfully uploaded, Note: Your post will be reviewed and uploaded as fast as possible')
-
-
-
-def search(request):
-    if request.method == 'GET':
-        town = request.GET.get('town')
-        type = request.GET.get('type')
-        min_price = request.GET.get('min_price')
-        max_price = request.GET.get('max_price')
-        title = 'Searched Houses'
-        search = Upload.objects.filter(town__icontains=town, type__icontains=type,
-                                       price__range=(min_price, max_price))
-        return render(request, 'search.html', {'search': search, 'title': title})
-    #return render(request, 'post.html')
 
 def subscribe(request):
     if request.method == 'POST':

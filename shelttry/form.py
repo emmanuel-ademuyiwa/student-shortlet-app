@@ -1,3 +1,4 @@
+from email.policy import default
 from django import forms
 from .models import Upload, Profile
 from django.contrib.auth.forms import UserCreationForm
@@ -48,7 +49,18 @@ class CreateUserForm(UserCreationForm):
 
     class Meta:
         model = Profile
-        fields = ['name', 'username', 'email', 'purpose', 'password1', 'password2']
+        fields = ['name', 'email', 'purpose', 'password1', 'password2']
+
+class ProfileForm(forms.ModelForm):
+    name = forms.CharField(label='Full name')
+    email = forms.EmailField(label='Email')
+    phone = forms.RegexField(regex=r'^\+?1?\d{9,15}$')
+    whatsApp = forms.CharField(label="WhatsApp number. Must be entered in the format: '+2349063435621'")
+
+    class Meta:
+        model = Profile
+        fields = ('name', 'email', 'phone', 'whatsApp',)
+
 
 
 
@@ -56,9 +68,12 @@ class DocumentForm(forms.ModelForm):
     town = forms.CharField(label='Town', widget=forms.Select(choices=town))
     type = forms.CharField(label='Type', widget=forms.Select(choices=type))
     availability = forms.CharField(label='Availability', widget=forms.Select(choices=availability))
+    shortDescription = forms.CharField(label='Short Description')
     description = forms.TextInput()
     landlord = forms.CharField(widget=forms.HiddenInput())
-    numbers = forms.IntegerField(label="Numbers of images to be uploaded", widget=forms.Select(choices=IMAGES_CHOICES))
+    phone = forms.CharField(widget=forms.HiddenInput())
+    whatsApp = forms.CharField(widget=forms.HiddenInput())
+    numbers = forms.IntegerField(label="Numbers of images to be uploaded", widget=forms.Select(choices=IMAGES_CHOICES), min_value=4)
     image1 = forms.ImageField(label="1")
     image2 = forms.ImageField(label="2")
     image3 = forms.ImageField(label="3")
@@ -73,7 +88,7 @@ class DocumentForm(forms.ModelForm):
 
     class Meta:
         model = Upload
-        fields = ('hallname', 'description', 'type',
+        fields = ('hallname', 'shortDescription', 'description', 'type',
                   'town', 'availability', 'price', 'landlord', 
-                  'phone', 'numbers', 'image1', 'image2', 'image3', 
+                  'phone', 'whatsApp', 'numbers', 'image1', 'image2', 'image3', 
                   'image4', 'image5', 'image6', 'image7', 'image8', 'image9', 'image10', )

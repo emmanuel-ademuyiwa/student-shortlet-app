@@ -21,6 +21,7 @@ urlpatterns = [
     path('post-detail/for-rent/<slug:slug>/', views.detail, name='detail'),
     path('delete/<int:id>/', views.delete, name='delete-post'),
     path('edit/<int:id>/', views.edit, {}, name='edit-post'),
+    path('profile/<int:id>/', views.profile, {}, name='profile'),
     path('dashboard', views.dashboard, name='dashboard'),
     path('houses', views.dashboardhouses, name='houses'),
     path('login', views.user_log, name='login'),
